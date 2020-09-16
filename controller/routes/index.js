@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const todo_list=require('../../model/todo_list.js');
 
 const datetime=()=>{
     const date=new Date();
@@ -8,43 +9,46 @@ const datetime=()=>{
 }
 
 router.get('/', async (req, res, next) => {
-    // const connection = await req.app.locals.pool.getConnection(async conn => conn);
-    // const [row] = await connection.query(
-    //     'SELECT title, contents FROM todo_list'
-    // );
-    // res.json(row);
     res.sendFile(path.join(__dirname, "../../public/index.html"));
 });
 router.get('/main',async (req, res, next) => {
-    const connection = await req.app.locals.pool.getConnection(async conn => conn);
-    const [row] = await connection.query(
-        'SELECT title, contents FROM todo_list'
-    );
-    res.json(row);
+    const data=[await todo_list.select_todo_list(req,'todo'),await todo_list.select_todo_list(req,'doing'),await todo_list.select_todo_list(req,'done')];
+    const count=[await todo_list.todo_count(req,'todo'),await todo_list.todo_count(req,'doing'), await todo_list.todo_count(req,'done')];
+    res.json([data,count]);
+    res.end();
 });
 
-router.post('/login', async (req, res, err) => {
+router.post('/login', (req, res, err) => {
     if (!req.session.userid) {
         req.session.userid = 1;
-        const connection = await req.app.locals.pool.getConnection(async conn => conn);
-        const [row] = await connection.query(
-            'SELECT name FROM user WHERE userid = 1'
-        );
-        req.session.name = row;
+        req.session.name = 'jiyeon';
         req.session.save();
+        res.json(req.session);
+        res.end();
     }
-    console.log(req.session);
+    else
+        res.redirect();
 });
-router.post('/add_list', async (req, res) => {
-    const creation_time=datetime();
-    console.log(creation_time);
-    const value = [req.body.title, req.body.contents, req.session.userid, "todo", creation_time,creation_time];
-    const connection = await req.app.locals.pool.getConnection(async conn => conn);
-    await connection.query(
-        'INSERT INTO todo_list (title, contents, writer_id, status, creation_time, status_time) VALUES ?', [[value]]
-    );
+
+router.post('/POST/todo-list', async (req, res) => {
+    await todo_list.insert_todo(req);
     res.redirect('/');
-})
+});
+
+router.put('/PUT/todo-status', async(req, res)=>{
+    await todo_list.update_todo_status(req,req.body.todo_id,req.body.status);
+    res.end();
+});
+
+router.post('/PUT/todo-contents', async(req,res)=>{
+    await todo_list.update_todo_contents(req, req.body.todo_id,req.body.contents);
+    res.end();
+});
+
+router.delete('/DELETE/todo', async(req, res)=>{
+    await todo_list.delete_todo(req, req.body.todo_id);
+    res.end();
+});
 
 
 module.exports = router;

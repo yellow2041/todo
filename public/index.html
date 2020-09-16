@@ -17,10 +17,10 @@
     </form>
     <form method="POST" action="/add_list">
         <div>
-            할 일: <input type="text" name="title">
+            할 일: <input type="text" name="title" required>
         </div>
         <div>
-            내용: <textarea name="contents" rows="5" cols="100"></textarea>
+            내용: <textarea name="contents" rows="5" cols="100" required maxlength="500"></textarea>
         </div>
         <button type="submit">게시글 작성</button>
     </form>

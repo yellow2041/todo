@@ -15,7 +15,7 @@ app.locals.pool = mysql.createPool({
     user: 'jy',
     password: '0000',
     database: 'mydb'
-});
+})
 
 app.use(express.static('public'));
 
