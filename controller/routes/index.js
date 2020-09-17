@@ -30,24 +30,24 @@ router.post('/login', (req, res, err) => {
         res.redirect();
 });
 
-router.post('/POST/todo-list', async (req, res) => {
+router.post('/todo-list', async (req, res) => {
     await todo_list.insert_todo(req);
     res.redirect('/');
 });
 
-router.put('/PUT/todo-status', async(req, res)=>{
+router.put('/todo-status', async(req, res)=>{
     await todo_list.update_todo_status(req,req.body.todo_id,req.body.status);
     res.end();
 });
 
-router.post('/PUT/todo-contents', async(req,res)=>{
+router.put('/todo-contents', async(req,res)=>{
     await todo_list.update_todo_contents(req, req.body.todo_id,req.body.contents);
     res.end();
 });
 
-router.delete('/DELETE/todo', async(req, res)=>{
-    await todo_list.delete_todo(req, req.body.todo_id);
-    res.end();
+router.delete('/todo/:todo_id', async(req, res)=>{
+    await todo_list.delete_todo(req, req.todo_id);
+    res.json({status: 'ok'});
 });
 
 

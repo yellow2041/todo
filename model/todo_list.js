@@ -1,4 +1,6 @@
-const getConn = async (req) => { return await req.app.locals.pool.getConnection(async conn => conn); }
+const pool=require('./db.config.js');
+
+const getConn = async (req) => { return await pool.getConnection(async conn => conn); }
 
 const datetime = () => {
     const date = new Date();

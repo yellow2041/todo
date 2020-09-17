@@ -4,6 +4,7 @@ const port = 3001;
 const mysql = require('mysql2/promise');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const indexRouter = require('./controller/routes/index');
 
@@ -17,7 +18,7 @@ app.locals.pool = mysql.createPool({
     database: 'mydb'
 })
 
-app.use(express.static('public'));
+app.use('/',express.static(path.join(__dirname,'public')));
 
 app.use(session({
     secret: 'keyboard cat',
