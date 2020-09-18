@@ -50,5 +50,4 @@ router.delete('/todo/:todo_id', async(req, res)=>{
     res.json({status: 'ok'});
 });
 
-
 module.exports = router;

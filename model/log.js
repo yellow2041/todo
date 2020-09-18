@@ -31,7 +31,7 @@ const select_todo=async(req)=>{
     const connection=await getConn(req);
     const log_time=datetime();
     const [row] = await connection.query(
-        'INSERT INTO log (user_id, title, origin_status, new_status, action, time) VALUES ?',[[value]]
+        'SELECT user_id, title, origin_status, new_status, action, time FROM log'
     );
     connection.release();
     return row;

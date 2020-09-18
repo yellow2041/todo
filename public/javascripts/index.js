@@ -2,7 +2,7 @@ const login_btn = document.getElementById('login_btn');
 
 login_btn.addEventListener('click', async () => {
     //login_btn.innerHTML = "로그아웃"
-
+    const response=await fetch('/login');
 });
 const response_test = async () => {
     const response = await fetch('/main');
