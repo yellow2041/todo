@@ -27,7 +27,7 @@ router.post('/login', (req, res, err) => {
         res.end();
     }
     else
-        res.redirect();
+        res.redirect('/');
 });
 
 router.post('/todo-list', async (req, res) => {
