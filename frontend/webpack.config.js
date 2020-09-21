@@ -14,12 +14,16 @@ module.exports = {
                 test: /\.js$/,
                 use: 'babel-loader',
                 exclude: /node_modules/
-            }
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"], // style-loader를 앞에 추가한다
+            },
         ]
     },
     plugins: [new HtmlWebpackPlugin(
         {
-            template: 'src/app.html'
+            template: 'src/index.html'
         }
     )]
 }

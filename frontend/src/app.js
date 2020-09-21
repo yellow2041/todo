@@ -1,4 +1,5 @@
 import MainService from './mainService.js';
+import "./css/index.css";
 
 window.addEventListener("DOMContentLoaded", ()=> {
     const targetEl = document.querySelector("#log");
