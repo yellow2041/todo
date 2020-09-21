@@ -5,18 +5,19 @@ const mysql = require('mysql2/promise');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 
 const indexRouter = require('./controller/routes/index');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.locals.pool = mysql.createPool({
-    host: '49.50.172.152',
-    user: 'jy',
-    password: '0000',
-    database: 'mydb'
-})
+const corsOptions = {
+    origin: 'http://localhost:3001',
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use('/',express.static(path.join(__dirname,'public')));
 
