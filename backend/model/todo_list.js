@@ -10,7 +10,7 @@ const datetime = () => {
 const select_todo_list = async (req, status) => {
     const connection = await getConn(req);
     const [row] = await connection.query(
-        "SELECT todo_id, title, contents, writer_id FROM todo_list where status=?", [status]
+        "SELECT todo_list.todo_id, todo_list.title, todo_list.contents, todo_list.writer_id, user.name FROM todo_list,user where todo_list.status=? AND todo_list.writer_id=user.userid", [status]
     );
     connection.release();
     return row;

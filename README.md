@@ -4,5 +4,11 @@
 ## 프로젝트 시작 명령어
 ```
 npm install
+
+cd backend
+npm start
+cd ..
+
+cd frontend
 npm start
 ```

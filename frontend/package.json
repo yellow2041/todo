@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
   "dependencies": {
     "core-js": "3.6.5",
     "cors": "2.8.5",
+    "file-loader": "6.1.0",
     "webpack": "4.44.2",
     "webpack-cli": "3.3.12"
   }

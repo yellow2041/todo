@@ -17,7 +17,16 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"], // style-loader를 앞에 추가한다
+                use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.svg$/,
+                loader: "file-loader",
+                exclude: /node_modules/,
+                options: {
+                    publicPath: './dist/',
+                    name: '[name].[ext]?[hash]',
+                },
             },
         ]
     },
@@ -25,5 +34,14 @@ module.exports = {
         {
             template: 'src/index.html'
         }
-    )]
+    )],
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        publicPath: "/",
+        host: "127.0.0.1",
+        overlay: true,
+        port: 8080,
+        stats: "errors-only",
+        historyApiFallback: true,
+    },
 }

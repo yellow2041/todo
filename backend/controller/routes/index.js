@@ -12,6 +12,7 @@ router.get('/', async (req, res, next) => {
     res.sendFile(path.join(__dirname, "../../public/index.html"));
 });
 router.get('/main',async (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const data=[await todo_list.select_todo_list(req,'todo'),await todo_list.select_todo_list(req,'doing'),await todo_list.select_todo_list(req,'done')];
     const count=[await todo_list.todo_count(req,'todo'),await todo_list.todo_count(req,'doing'), await todo_list.todo_count(req,'done')];
     res.json([data,count]);

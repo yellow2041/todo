@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TODO</title>
-    <link rel="stylesheet", href="/css/index.css">
+    <link rel="stylesheet" , href="./css/index.css">
     <script src="./dist/bundle.js"></script>
 </head>
+
 <body>
     <header>
         <div id="header">
@@ -15,5 +17,33 @@
             <div class="header_title">MENU</div>
         </div>
     </header>
+    <main>
+        <div class="column">
+            <div class="column_contents">
+                <div class="column_title_background">
+                    <div class="column_title">해야할 일</div>
+                </div>
+                <div class="column_list" id="todo"></div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="column_contents">
+                <div class="column_title_background">
+                    <div class="column_title">하는 중</div>
+                </div>
+                <div class="column_list" id="doing"></div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="column_contents">
+                <div class="column_title_background">
+                    <div class="column_title">다했어</div>
+                </div>
+                <div id="done"></div>
+            </div>
+        </div>
+    </main>
+
 <script src="bundle.js"></script></body>
+
 </html>
