@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express();
 const port = 3001;
-const mysql = require('mysql2/promise');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');

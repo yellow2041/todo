@@ -20,6 +20,7 @@ router.get('/main',async (req, res, next) => {
 });
 
 router.post('/login', (req, res, err) => {
+    res.header("Access-Control-Allow-Origin", "*");
     if (!req.session.userid) {
         req.session.userid = 1;
         req.session.name = 'jiyeon';
@@ -28,12 +29,12 @@ router.post('/login', (req, res, err) => {
         res.end();
     }
     else
-        res.redirect('/');
+        res.redirect('http://localhost:8080/');
 });
 
 router.post('/todo-list', async (req, res) => {
     await todo_list.insert_todo(req);
-    res.redirect('/');
+    res.redirect('http://localhost:8080/');
 });
 
 router.put('/todo-status', async(req, res)=>{
