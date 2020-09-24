@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TODO</title>
-    <link rel="stylesheet"  href="./css/index.css">
+    <link rel="stylesheet" href="./css/index.css">
     <script src="./dist/bundle.js"></script>
     <script>
         const active_add = () => {
-            document.querySelector('.add_btn').disabled = false;
+            document.querySelectorAll('.add_btn').forEach(el=>{
+                el.disabled = false;
+            })
         }
 
     </script>
@@ -21,7 +23,7 @@
         <div id="header">
             <div class="header_title">TODO 서비스</div>
             <div style="display: flex; margin: 5px">
-                    <button type="submit" id="login_btn">로그인</button>
+                <button type="submit" id="login_btn">로그인</button>
                 <div class="header_title">MENU</div>
             </div>
         </div>
@@ -38,16 +40,16 @@
                             <div><img src="./image/close.svg" /></div>
                         </div>
                     </div>
-                        <div class="column_add_card" id="column_add_card_1">
-                            <div style="display: flex">
-                                <textarea class="note_text" name="title" required autofocus placeholder="Enter a note"
-                                    maxlength="500" oninput="active_add()"></textarea>
-                            </div>
-                            <div class="card_btn">
-                                <button class="btn add_btn" type="submit" disabled>Add</button>
-                                <button class="btn cancel_btn" type="button">Cancel</button>
-                            </div>
+                    <div class="column_add_card" id="column_add_card_1">
+                        <div style="display: flex">
+                            <textarea class="note_text" name="title" required autofocus placeholder="Enter a note"
+                                maxlength="500" oninput="active_add()"></textarea>
                         </div>
+                        <div class="card_btn" data-status='todo'>
+                            <button class="btn add_btn" type="submit" disabled>Add</button>
+                            <button class="btn cancel_btn" type="button">Cancel</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="column_list" id="todo"></div>
             </div>
@@ -63,18 +65,16 @@
                             <div><img src="./image/close.svg" /></div>
                         </div>
                     </div>
-                    <form method="POST" action="/add_list">
                         <div class="column_add_card" id="column_add_card_2">
                             <div style="display: flex">
                                 <textarea name="title" class="note_text" name="note" required autofocus
-                                    placeholder="Enter a note" maxlength="500"></textarea>
+                                    placeholder="Enter a note" oninput="active_add()" maxlength="500"></textarea>
                             </div>
-                            <div class="card_btn">
+                            <div class="card_btn" data-status='doing'>
                                 <button class="btn add_btn" type="submit" disabled>Add</button>
                                 <button class="btn cancel_btn" type="button">Cancel</button>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="column_list" id="doing"></div>
             </div>
@@ -93,9 +93,9 @@
                         <div class="column_add_card" id="column_add_card_3">
                             <div style="display: flex">
                                 <textarea class="note_text" name="note" required autofocus placeholder="Enter a note"
-                                    maxlength="500"></textarea>
+                                oninput="active_add()" maxlength="500"></textarea>
                             </div>
-                            <div class="card_btn">
+                            <div class="card_btn" data-status='done'>
                                 <button class="btn add_btn" type="submit" disabled>Add</button>
                                 <button class="btn cancel_btn" type="button">Cancel</button>
                             </div>

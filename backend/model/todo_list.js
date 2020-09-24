@@ -19,7 +19,7 @@ const select_todo_list = async (req, status) => {
 const insert_todo = async (req) => {
     const connection = await getConn(req);
     const creation_time = datetime();
-    const value = [req.body.title, req.body.contents, req.session.userid, "todo", creation_time, creation_time];
+    const value = [req.body.title, req.body.contents, 1, req.body.status, creation_time, creation_time];
     await connection.query(
         'INSERT INTO todo_list (title, contents, writer_id, status, creation_time, status_time) VALUES ?', [[value]]
     );
