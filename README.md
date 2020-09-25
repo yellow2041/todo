@@ -6,7 +6,7 @@
 npm install
 
 cd backend
-npm start
+node app.js
 cd ..
 
 cd frontend

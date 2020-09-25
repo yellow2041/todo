@@ -39,7 +39,7 @@ const insert_todo = async () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     title: document.querySelector('textarea').value,
-                    contents: 'tmp',
+                    contents: '',
                     writer_id: document.cookie.id,
                     status: element.closest('.card_btn').dataset.status
                 })
