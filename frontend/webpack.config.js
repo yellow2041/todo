@@ -43,5 +43,6 @@ module.exports = {
         port: 8080,
         stats: "errors-only",
         historyApiFallback: true,
+        disableHostCheck: true,
     },
 }
