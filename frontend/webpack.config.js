@@ -38,7 +38,6 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         publicPath: "/",
-        host: "localhost",
         overlay: true,
         port: 8080,
         stats: "errors-only",
