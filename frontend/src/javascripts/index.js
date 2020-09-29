@@ -34,7 +34,7 @@ const insert_todo = async () => {
         element.addEventListener('click', async (event) => {
             const card = new Card({ title: document.querySelector('textarea').value, writer: 'jiyeon', id: -1 });
             card.add(element.closest('.card_btn').dataset.status);
-            await fetch('http://localhost:3001/todo-list', {
+            await fetch('http://localhost:3001/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -43,7 +43,8 @@ const insert_todo = async () => {
                     writer_id: document.cookie.id,
                     status: element.closest('.card_btn').dataset.status
                 })
-            });
+            });   
+            //추가한 데이터 가져와서 카드 만들기
         })
     })
 }
