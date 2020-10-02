@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 router.post('/main',async (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.set('Access-Control-Allow-Headers', 'Content-Type');
-    const data=[await todo_list.select_todo_list(req,req.body.status),await todo_list.select_todo_list(req,req.body.status),await todo_list.select_todo_list(req,req.body.status)];
+    const data=[await todo_list.select_todo_list(req,req.body.status)];
     const count=[await todo_list.todo_count(req,'todo'),await todo_list.todo_count(req,'doing'), await todo_list.todo_count(req,'done')];
     res.json([data,count]);
     res.end();
@@ -36,12 +36,11 @@ router.post('/login', (req, res, err) => {
 });
 
 router.post('/todo-list', async (req, res) => {
-    console.log(req.body);
-    res.set('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', '*');
     res.set('Access-Control-Allow-Headers', 'Content-Type');
     
     await todo_list.insert_todo(req);
-    res.redirect('http://localhost:8080/');
+    res.json({status:"ok"});
 });
 
 router.put('/todo-status', async(req, res)=>{
