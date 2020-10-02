@@ -10,11 +10,10 @@
     <script src="./dist/bundle.js"></script>
     <script>
         const active_add = () => {
-            document.querySelectorAll('.add_btn').forEach(el=>{
+            document.querySelectorAll('.add_btn').forEach(el => {
                 el.disabled = false;
             })
         }
-
     </script>
 </head>
 
@@ -65,16 +64,16 @@
                             <div><img src="./image/close.svg" /></div>
                         </div>
                     </div>
-                        <div class="column_add_card" id="column_add_card_2">
-                            <div style="display: flex">
-                                <textarea name="title" class="note_text" name="note" required autofocus
-                                    placeholder="Enter a note" oninput="active_add()" maxlength="500"></textarea>
-                            </div>
-                            <div class="card_btn" data-status='doing'>
-                                <button class="btn add_btn" type="submit" disabled>Add</button>
-                                <button class="btn cancel_btn" type="button">Cancel</button>
-                            </div>
+                    <div class="column_add_card" id="column_add_card_2">
+                        <div style="display: flex">
+                            <textarea name="title" class="note_text" name="note" required autofocus
+                                placeholder="Enter a note" oninput="active_add()" maxlength="500"></textarea>
                         </div>
+                        <div class="card_btn" data-status='doing'>
+                            <button class="btn add_btn" type="submit" disabled>Add</button>
+                            <button class="btn cancel_btn" type="button">Cancel</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="column_list" id="doing"></div>
             </div>
@@ -89,20 +88,18 @@
                             <div><img src="./image/close.svg" /></div>
                         </div>
                     </div>
-                    <form>
-                        <div class="column_add_card" id="column_add_card_3">
-                            <div style="display: flex">
-                                <textarea class="note_text" name="note" required autofocus placeholder="Enter a note"
+                    <div class="column_add_card" id="column_add_card_3">
+                        <div style="display: flex">
+                            <textarea class="note_text" name="note" required autofocus placeholder="Enter a note"
                                 oninput="active_add()" maxlength="500"></textarea>
-                            </div>
-                            <div class="card_btn" data-status='done'>
-                                <button class="btn add_btn" type="submit" disabled>Add</button>
-                                <button class="btn cancel_btn" type="button">Cancel</button>
-                            </div>
                         </div>
-                    </form>
+                        <div class="card_btn" data-status='done'>
+                            <button class="btn add_btn" type="submit" disabled>Add</button>
+                            <button class="btn cancel_btn" type="button">Cancel</button>
+                        </div>
+                    </div>
                 </div>
-                <div id="done"></div>
+                <div class="column_list" id="done"></div>
             </div>
         </div>
     </main>

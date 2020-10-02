@@ -2,9 +2,9 @@ import { Card } from './util/card.js';
 
 
 const show_cards = async (column) => {
-    const response = await fetch('http://localhost:3001/main',{
+    const response = await fetch('http://localhost:3001/main', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*' },
         body: JSON.stringify({
             status: column
         })
@@ -12,9 +12,8 @@ const show_cards = async (column) => {
     const contents = await response.json();
     contents[0].forEach(element => {
         element.forEach(todo => {
-                const card = new Card({ title: todo['title'], writer: todo['name'], id: todo['todo_id'] });
-                console.log(card);
-                card.add(column);
+            const card = new Card({ title: todo['title'], writer: todo['name'], id: todo['todo_id'] });
+            card.add(column);
         });
     });
 }
@@ -32,39 +31,47 @@ const login = async () => {
 const insert_todo = async () => {
     document.querySelectorAll('.add_btn').forEach(element => {
         element.addEventListener('click', async (event) => {
-            const card = new Card({ title: document.querySelector('textarea').value, writer: 'jiyeon', id: -1 });
-            card.add(element.closest('.card_btn').dataset.status);
-            await fetch('http://localhost:3001/', {
+            const input=element.closest('div').previousSibling.previousSibling.querySelector('textarea');
+            const response = await fetch('http://localhost:3001/todo-list', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*' },
+                mode: 'cors',
                 body: JSON.stringify({
-                    title: document.querySelector('textarea').value,
+                    title: input.value,
                     contents: '',
                     writer_id: document.cookie.id,
                     status: element.closest('.card_btn').dataset.status
                 })
-            });   
+            });
+            const status=await response.json();
+            console.log(status['status']);  
+            if (status['status'] === 'ok') {
+                const card = new Card({ title: input.value, writer: 'jiyeon', id: -1 });
+                card.add(element.closest('.card_btn').dataset.status);
+            }
+            input.value='';
             //추가한 데이터 가져와서 카드 만들기
         })
     })
+}
+
+const delete_todo = async () => {
+
 }
 
 const show_add_card = (el, index) => {
     const column_add_card = document.getElementById('column_add_card_' + index);
     el.addEventListener('click', (event) => {
         column_add_card.style.display = 'block';
-        column_add_card.parentElement.nextElementSibling.style.height = '73%';
+        column_add_card.parentElement.nextElementSibling.style.height = '66%';
     })
 }
 const hide_add_card = (el, index) => {
     const column_add_card = document.getElementById('column_add_card_' + index);
     el.addEventListener('click', (event) => {
         column_add_card.style.display = 'none';
-        column_add_card.parentElement.nextElementSibling.style.height = '94%';
+        column_add_card.parentElement.nextElementSibling.style.height = '92%';
     })
-}
-const active_add = () => {
-    document.querySelector('.add_btn').disabled = false;
 }
 
 const init = () => {

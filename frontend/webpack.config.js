@@ -39,7 +39,7 @@ module.exports = {
         contentBase: path.join(__dirname, "dist"),
         publicPath: "/",
         overlay: true,
-        host:'49.50.172.152',
+        host:'0.0.0.0',
         port: 8080,
         stats: "errors-only",
         historyApiFallback: true,

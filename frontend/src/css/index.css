@@ -143,17 +143,18 @@ main {
 
     background-color: #ecf0f1;
     border-radius: 5px;
-    border:1px #7f8c8d solid;
+    border:1px transparent solid;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 .card:hover {
     box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 8px;
+    cursor: pointer;
 }
 .card_title {
     display: flex;
     align-items: center;
 
-    margin: 10px 15px;
+    margin: 10px 15px ;
 
     font-size: 0.8em;
 }
@@ -164,7 +165,7 @@ main {
 .column_list {
     position: relative;
     
-    height: 94%;
+    height: 92%;
 
     overflow: auto;
 }
@@ -189,6 +190,15 @@ main {
 }
 .card_writer_name {
     font-size: 0.9em;
+}
+.card_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card_delete {
+    margin-right: 8px;
+    padding-bottom: 5px;
 }
 
 #header {
