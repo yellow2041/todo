@@ -20,7 +20,7 @@ const show_cards = async (column) => {
 
 const login = async () => {
     document.getElementById('login_btn').addEventListener('click', async (event) => {
-        const response = await fetch('http://localhost:3001/login', {
+        const response = await fetch('http://49.50.172.152:3001/login', {
             method: 'POST'
         });
         //document.cookie=response.json();
@@ -32,7 +32,7 @@ const insert_todo = async () => {
     document.querySelectorAll('.add_btn').forEach(element => {
         element.addEventListener('click', async (event) => {
             const input=element.closest('div').previousSibling.previousSibling.querySelector('textarea');
-            const response = await fetch('http://localhost:3001/todo-list', {
+            const response = await fetch('http://49.50.172.152:3001/todo-list', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*' },
                 mode: 'cors',

@@ -51,7 +51,7 @@ export class Card {
     }
     delete=async(event)=>{
         console.log(event.target.closest('.card'));
-        const response=await fetch('http://127.0.0.1:3001/todo/'+this.id,{
+        const response=await fetch('http://49.50.172.152:3001/todo/'+this.id,{
             method: 'DELETE'
         });
         const status=await response.json();
