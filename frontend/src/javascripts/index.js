@@ -2,7 +2,7 @@ import { Card } from './util/card.js';
 
 
 const show_cards = async (column) => {
-    const response = await fetch('http://127.0.0.1:3001/main', {
+    const response = await fetch('http://49.50.172.152:3001/main', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*' },
         body: JSON.stringify({
@@ -65,7 +65,7 @@ const hide_add_card = (el, index) => {
     const column_add_card = document.getElementById('column_add_card_' + index);
     el.addEventListener('click', (event) => {
         column_add_card.style.display = 'none';
-        column_add_card.parentElement.nextElementSibling.style.height = '100%';
+        column_add_card.parentElement.nextElementSibling.style.height = '94%';
     })
 }
 
