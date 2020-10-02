@@ -2,7 +2,7 @@ import { Card } from './util/card.js';
 
 
 const show_cards = async (column) => {
-    const response = await fetch('http://localhost:3001/main', {
+    const response = await fetch('http://127.0.0.1:3001/main', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*' },
         body: JSON.stringify({
@@ -44,7 +44,6 @@ const insert_todo = async () => {
                 })
             });
             const status=await response.json();
-            console.log(status['status']);  
             if (status['status'] === 'ok') {
                 const card = new Card({ title: input.value, writer: 'jiyeon', id: -1 });
                 card.add(element.closest('.card_btn').dataset.status);
@@ -55,22 +54,18 @@ const insert_todo = async () => {
     })
 }
 
-const delete_todo = async () => {
-
-}
-
 const show_add_card = (el, index) => {
     const column_add_card = document.getElementById('column_add_card_' + index);
     el.addEventListener('click', (event) => {
         column_add_card.style.display = 'block';
-        column_add_card.parentElement.nextElementSibling.style.height = '66%';
+        column_add_card.parentElement.nextElementSibling.style.height = '73%';
     })
 }
 const hide_add_card = (el, index) => {
     const column_add_card = document.getElementById('column_add_card_' + index);
     el.addEventListener('click', (event) => {
         column_add_card.style.display = 'none';
-        column_add_card.parentElement.nextElementSibling.style.height = '92%';
+        column_add_card.parentElement.nextElementSibling.style.height = '100%';
     })
 }
 

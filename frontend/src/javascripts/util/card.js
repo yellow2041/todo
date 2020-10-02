@@ -5,7 +5,7 @@ export class Card {
         this.id = obj.id;
         this.card = document.createElement('div');
     }
-    add(column) {
+    add=(column)=> {
         const new_card_icon = document.createElement('img');
         new_card_icon.setAttribute("src", "./image/card_icon.svg");
 
@@ -24,6 +24,7 @@ export class Card {
         delete_card_icon.setAttribute("src", "./image/delete.svg");
         delete_card_icon.setAttribute("height", "15");
         delete_card_icon.className = 'card_delete';
+        delete_card_icon.addEventListener('click',this.delete);
 
         const new_card_div = document.createElement('div');
         new_card_div.className = 'card_top';
@@ -47,5 +48,15 @@ export class Card {
         this.card.appendChild(new_card_div);
         this.card.appendChild(new_card_writer);
         document.getElementById(column).appendChild(this.card);
+    }
+    delete=async(event)=>{
+        console.log(event.target.closest('.card'));
+        const response=await fetch('http://127.0.0.1:3001/todo/'+this.id,{
+            method: 'DELETE'
+        });
+        const status=await response.json();
+        if(status['status']==='ok'){
+             event.target.closest('.card').style.display='none';
+        }
     }
 }

@@ -31,8 +31,6 @@ router.post('/login', (req, res, err) => {
         res.send(req.session.name);
         res.end();
     }
-    else
-        res.redirect('http://localhost:8080/');
 });
 
 router.post('/todo-list', async (req, res) => {
@@ -54,7 +52,8 @@ router.put('/todo-contents', async(req,res)=>{
 });
 
 router.delete('/todo/:todo_id', async(req, res)=>{
-    await todo_list.delete_todo(req, req.todo_id);
+    console.log(req.params.todo_id);
+    await todo_list.delete_todo(req, req.params.todo_id);
     res.json({status: 'ok'});
 });
 

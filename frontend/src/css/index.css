@@ -165,7 +165,7 @@ main {
 .column_list {
     position: relative;
     
-    height: 92%;
+    height: 100%;
 
     overflow: auto;
 }
