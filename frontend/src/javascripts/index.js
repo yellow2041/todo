@@ -1,10 +1,9 @@
 import { Card } from './util/card.js';
 
-
 const show_cards = async (column) => {
     const response = await fetch('http://49.50.172.152:3001/main', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*' },
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
         body: JSON.stringify({
             status: column
         })
@@ -23,18 +22,16 @@ const login = async () => {
         const response = await fetch('http://49.50.172.152:3001/login', {
             method: 'POST'
         });
-        //document.cookie=response.json();
-        console.log(JSON.stringify(response));
     });
 }
 
 const insert_todo = async () => {
     document.querySelectorAll('.add_btn').forEach(element => {
         element.addEventListener('click', async (event) => {
-            const input=element.closest('div').previousSibling.previousSibling.querySelector('textarea');
+            const input = element.closest('div').previousSibling.previousSibling.querySelector('textarea');
             const response = await fetch('http://49.50.172.152:3001/todo-list', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*' },
+                headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                 mode: 'cors',
                 body: JSON.stringify({
                     title: input.value,
@@ -43,13 +40,12 @@ const insert_todo = async () => {
                     status: element.closest('.card_btn').dataset.status
                 })
             });
-            const status=await response.json();
+            const status = await response.json();
             if (status['status'] === 'ok') {
                 const card = new Card({ title: input.value, writer: 'jiyeon', id: -1 });
                 card.add(element.closest('.card_btn').dataset.status);
             }
-            input.value='';
-            //추가한 데이터 가져와서 카드 만들기
+            input.value = '';
         })
     })
 }
@@ -79,12 +75,12 @@ const init = () => {
     document.querySelectorAll('.cancel_btn').forEach(element => {
         idx++;
         hide_add_card(element, idx);
-    })
+    });
+    show_cards('todo');
+    show_cards('doing');
+    show_cards('done');
+    login();
+    insert_todo();
 }
 
-show_cards('todo');
-show_cards('doing');
-show_cards('done');
-login();
-insert_todo();
 init();

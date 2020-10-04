@@ -30,16 +30,17 @@ module.exports = {
             },
         ]
     },
-    plugins: [new HtmlWebpackPlugin(
-        {
-            template: 'src/index.html'
-        }
-    )],
+    plugins: [
+        new HtmlWebpackPlugin(
+            {
+                template: 'src/index.html'
+            }
+        )],
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         publicPath: "/",
         overlay: true,
-        host:'0.0.0.0',
+        host: '0.0.0.0',
         port: 8080,
         stats: "errors-only",
         historyApiFallback: true,

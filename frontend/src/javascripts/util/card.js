@@ -50,7 +50,6 @@ export class Card {
         document.getElementById(column).appendChild(this.card);
     }
     delete=async(event)=>{
-        console.log(event.target.closest('.card'));
         const response=await fetch('http://49.50.172.152:3001/todo/'+this.id,{
             method: 'DELETE'
         });
